@@ -1,0 +1,11 @@
+node_modules
+tsconfig.temp.json
+dist
+*.tsbuildinfo
+.vscode/*.code-snippets
+.env
+*.local.*
+.next
+next-env.d.ts
+.DS_Store
+/data

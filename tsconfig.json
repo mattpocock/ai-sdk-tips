@@ -1,0 +1,26 @@
+{
+  /* From https://www.totaltypescript.com/tsconfig-cheat-sheet */
+  "compilerOptions": {
+    /* Base Options: */
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    "module": "NodeNext",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "jsx": "react",
+
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "DOM.AsyncIterable"]
+  }
+}
