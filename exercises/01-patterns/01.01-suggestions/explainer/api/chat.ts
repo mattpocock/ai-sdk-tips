@@ -6,15 +6,14 @@ import {
   streamObject,
   streamText,
   type ModelMessage,
-  type StreamObjectResult,
   type UIMessage,
   type UIMessageStreamWriter,
 } from 'ai';
 import { z } from 'zod';
 
-// 1. This is the type of our custom UIMessage.
-// This gives us type safety on the data-suggestions
-// part of the UIMessageStream.
+// 1. This is the type of our custom UIMessage. This
+// gives us type safety on the data-suggestions part
+// of the UIMessageStream.
 export type MyMessage = UIMessage<
   never,
   {
@@ -101,10 +100,14 @@ const streamFollowupSuggestionsToFrontend = async (
   }
 };
 
-export const POST = async (req: Request): Promise<Response> => {
+export const POST = async (
+  req: Request,
+): Promise<Response> => {
   const body = await req.json();
 
-  const modelMessages = convertToModelMessages(body.messages);
+  const modelMessages = convertToModelMessages(
+    body.messages,
+  );
 
   // 1. Create a UIMessageStream, which can handle multiple
   // streams being composed into it
@@ -112,17 +115,16 @@ export const POST = async (req: Request): Promise<Response> => {
     execute: async ({ writer }) => {
       // 2. Stream the initial response (could be any streamText
       // call with tool calls, etc.)
-      const messagesFromResponse = await streamInitialResponse(
-        modelMessages,
-        writer,
-      );
+      const messagesFromResponse =
+        await streamInitialResponse(modelMessages, writer);
 
       // 3. Generate the followup suggestions, passing in the
       // full message history
-      const followupSuggestions = generateFollowupSuggestions([
-        ...modelMessages,
-        ...messagesFromResponse,
-      ]);
+      const followupSuggestions =
+        generateFollowupSuggestions([
+          ...modelMessages,
+          ...messagesFromResponse,
+        ]);
 
       // 4. Stream the followup suggestions to the frontend
       await streamFollowupSuggestionsToFrontend(
