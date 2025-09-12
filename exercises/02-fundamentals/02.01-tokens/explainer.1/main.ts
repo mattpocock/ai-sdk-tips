@@ -8,7 +8,7 @@ const tokenizer = new Tiktoken(
   o200k_base,
 );
 
-const tokenize = (text: string) => {
+const textToTokens = (text: string) => {
   return tokenizer.encode(text);
 };
 
@@ -17,7 +17,7 @@ const input = readFileSync(
   'utf-8',
 );
 
-const output = tokenize(input);
+const output = textToTokens(input);
 
 console.log('Content length in characters:', input.length);
 console.log(`Number of tokens:`, output.length);
