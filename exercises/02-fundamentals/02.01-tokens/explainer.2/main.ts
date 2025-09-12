@@ -10,6 +10,6 @@ const tokensToText = (tokens: number[]) => {
   return tokenizer.decode(tokens);
 };
 
-const tokens = [1001, 14123];
+const tokens = [13984];
 const decoded = tokensToText(tokens);
 console.log(decoded);
