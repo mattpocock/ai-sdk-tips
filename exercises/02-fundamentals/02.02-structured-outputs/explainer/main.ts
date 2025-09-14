@@ -1,24 +1,42 @@
-import { Tiktoken } from 'js-tiktoken/lite';
-import o200k_base from 'js-tiktoken/ranks/o200k_base';
+import { anthropic } from '@ai-sdk/anthropic';
+import { generateObject, streamText } from 'ai';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+import z from 'zod';
 
-const tokenizer = new Tiktoken(
-  // NOTE: o200k_base is the tokenizer for GPT-4o
-  o200k_base,
+const invoice = readFileSync(
+  path.join(import.meta.dirname, 'invoice.pdf'),
 );
 
-const textToTokens = (text: string) => {
-  return tokenizer.encode(text);
-};
+const result = await generateObject({
+  schema: z.object({
+    items: z.array(
+      z.object({
+        name: z.string(),
+        quantity: z.number(),
+        price: z.number(),
+      }),
+    ),
+    total: z.number(),
+    currency: z.string(),
+  }),
+  model: anthropic('claude-3-7-sonnet-20250219'),
+  messages: [
+    {
+      role: 'user',
+      content: [
+        {
+          type: 'text',
+          text: 'Give me a summary of this invoice.',
+        },
+        {
+          type: 'file',
+          data: invoice,
+          mediaType: 'application/pdf',
+        },
+      ],
+    },
+  ],
+});
 
-const input = readFileSync(
-  path.join(import.meta.dirname, 'input.md'),
-  'utf-8',
-);
-
-const output = textToTokens(input);
-
-console.log('Content length in characters:', input.length);
-console.log(`Number of tokens:`, output.length);
-console.dir(output, { depth: null, maxArrayLength: 20 });
+console.dir(result.object, { depth: null });

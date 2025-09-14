@@ -1,86 +1,129 @@
-There's a lot of people out there, maybe you included, who still don't know what tokens are. Tokens are the currency of LLMs - you don't get billed in characters, you get billed in tokens.
+Most people think that LLMs can really only produce text. And they don't think about the second thing they're really good at, which is producing structured outputs.
 
-So you need to know what a token is because you're being charged for them. Let's explain it in under two minutes.
+I have here an invoice that I'm going to pass to the LLM to extract out the information. I want to extract it out because it's in a PDF - I can't put a PDF in a database to query the raw information.
 
-## How LLMs Process Text
+## Setting Up the Invoice Extraction
 
-LLMs don't actually work with text, they work with numbers. Every piece of text that you send to an LLM gets turned into tokens, which are just an array of numbers.
-
-I'm using here the tokenizer that's used for GPT-4o, or rather a JavaScript implementation of it called `js-tiktoken`:
+I'm going to take that PDF and read it into memory here, and then we're going to send it to Claude 3.7 Sonnet. I'm using the AI SDK here and TypeScript.
 
 ```ts
-import { Tiktoken } from 'js-tiktoken/lite';
-import o200k_base from 'js-tiktoken/ranks/o200k_base';
+import { anthropic } from '@ai-sdk/anthropic';
+import { generateObject, streamText } from 'ai';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+import z from 'zod';
 
-const tokenizer = new Tiktoken(
-  // NOTE: o200k_base is the tokenizer for GPT-4o
-  o200k_base,
-);
-```
-
-## Tokens vs Characters
-
-I have a rather large piece of text here in `input.md`. I'm reading that file into memory and then I'm turning it into tokens using the `textToTokens` function:
-
-```ts
-const textToTokens = (text: string) => {
-  return tokenizer.encode(text);
-};
-
-const input = readFileSync(
-  path.join(import.meta.dirname, 'input.md'),
-  'utf-8',
+const invoice = readFileSync(
+  path.join(import.meta.dirname, 'invoice.pdf'),
 );
 
-const output = textToTokens(input);
-
-console.log('Content length in characters:', input.length);
-console.log(`Number of tokens:`, output.length);
-console.dir(output, { depth: null, maxArrayLength: 20 });
+const result = await generateObject({
+  schema: z.object({
+    items: z.array(
+      z.object({
+        name: z.string(),
+        quantity: z.number(),
+        price: z.number(),
+      }),
+    ),
+    total: z.number(),
+    currency: z.string(),
+  }),
+  model: anthropic('claude-3-7-sonnet-20250219'),
+  messages: [
+    {
+      role: 'user',
+      content: [
+        {
+          type: 'text',
+          text: 'Give me a summary of this invoice.',
+        },
+        {
+          type: 'file',
+          data: invoice,
+          mediaType: 'application/pdf',
+        },
+      ],
+    },
+  ],
+});
 ```
 
-When I run this, we can see that the content length in characters, the number of letters it is, is nearly 2,300, but the number of tokens is only 484.
+## From Text to Structured Data
 
-```
-Content length in characters: 2294
-Number of tokens: 484
-```
+Now I'm using `streamText` here, which means I'm just going to get a text output. And that's fine, we end up with a nice little summary coming back for us.
 
-That's because tokens are _chunks_ of text. They're not individual characters.
-
-## What LLMs Actually Process
-
-So that's what the LLM is actually reading - the tokens, not the text. You might think to yourself that LLMs are trained on text, but really they're trained on text that's been turned into tokens.
-
-And what does an LLM output? Well, it outputs more tokens. It outputs numbers, not text, and then that tokenizer takes those tokens and turns them into text that we can read.
-
-## Converting Tokens Back to Text
-
-For instance, we can just pick out any random numbers here and turn them into text:
+Instead I'm going to replace this `streamText` call with a `generateObject` call. I'm then going to pass it a schema of all of the things I want to get back.
 
 ```ts
-const tokensToText = (tokens: number[]) => {
-  return tokenizer.decode(tokens);
-};
-
-const tokens = [13984];
-const decoded = tokensToText(tokens);
-console.log(decoded);
+const result = await generateObject({
+  schema: z.object({
+    items: z.array(
+      z.object({
+        name: z.string(),
+        quantity: z.number(),
+        price: z.number(),
+      }),
+    ),
+    total: z.number(),
+    currency: z.string(),
+  }),
+  model: anthropic('claude-3-7-sonnet-20250219'),
+  messages: [
+    {
+      role: 'user',
+      content: [
+        {
+          type: 'text',
+          text: 'Give me a summary of this invoice.',
+        },
+        {
+          type: 'file',
+          data: invoice,
+          mediaType: 'application/pdf',
+        },
+      ],
+    },
+  ],
+});
 ```
 
-I found the magic token `13984` turns into `VC`. Funny.
+## Defining the Schema with Zod
 
-## Why Tokens Matter
+I'm using Zod here to declare the schema. In this case, it's an array of objects where we have name, quantity, and price. I want to see that I bought three watermelons, two mangoes, and one peach.
 
-Tokens are really how LLMs think. They think in numbers, not text, and they are the currency of LLMs.
+```ts
+schema: z.object({
+  items: z.array(
+    z.object({
+      name: z.string(),
+      quantity: z.number(),
+      price: z.number(),
+    }),
+  ),
+  total: z.number(),
+  currency: z.string(),
+}),
+```
 
-The more text you give them, that's going to be turned into more tokens, which you will then be billed for.
+And when I run this now, I can see all of the items in an actual structured object that I can then plug directly into a database or just display in a table in the UI.
 
-| Text Processing | What's Actually Happening                     |
-| --------------- | --------------------------------------------- |
-| You send text   | Text is converted to tokens (numbers)         |
-| LLM processes   | LLM works with tokens, not text               |
-| LLM responds    | LLM outputs tokens that are converted to text |
-| You get billed  | Based on number of tokens, not characters     |
+```ts
+console.dir(result.object, { depth: null });
+```
+
+## A Recent Innovation
+
+All of this stuff, of course, is relatively new. This is OpenAI announcing this August 6th last year. And it's essentially a feature of their API.
+
+When you enable structured outputs, you're more likely to get a response that matches the schema that you send. So it's not a feature that's innate to LLMs. It's something that the model providers provide as a service on top of their models.
+
+## Summary
+
+Structured outputs allow you to get objects out of LLMs, not just text, and we used a PDF as the input here, but you can use any text or image.
+
+| Traditional LLM Output | Structured Output     |
+| ---------------------- | --------------------- |
+| Raw text               | JSON objects          |
+| Requires parsing       | Ready for database/UI |
+| Inconsistent format    | Schema-validated      |
