@@ -1,0 +1,282 @@
+[
+  {
+    "text": "Welcome everyone to today's presentation on artificial intelligence.",
+    "start": 0.5,
+    "end": 4.2,
+    "speaker": "Speaker_1",
+    "confidence": 0.92
+  },
+  {
+    "text": "Thank you, Sarah. I'm excited to be here.",
+    "start": 4.8,
+    "end": 7.1,
+    "speaker": "Speaker_2",
+    "confidence": 0.89
+  },
+  {
+    "text": "Let's start by discussing the current state of machine learning.",
+    "start": 7.5,
+    "end": 11.3,
+    "speaker": "Speaker_1",
+    "confidence": 0.95
+  },
+  {
+    "text": "Actually, before we dive in, could you explain what AI means to you?",
+    "start": 12.1,
+    "end": 16.4,
+    "speaker": "Speaker_2",
+    "confidence": 0.87
+  },
+  {
+    "text": "Great question. AI, or artificial intelligence, refers to systems that can perform tasks typically requiring human intelligence.",
+    "start": 17.0,
+    "end": 24.8,
+    "speaker": "Speaker_1",
+    "confidence": 0.93
+  },
+  {
+    "text": "This includes things like learning, reasoning, and problem solving.",
+    "start": 25.2,
+    "end": 29.1,
+    "speaker": "Speaker_1",
+    "confidence": 0.91
+  },
+  {
+    "text": "I see. And how does machine learning fit into this broader picture?",
+    "start": 30.5,
+    "end": 34.7,
+    "speaker": "Speaker_2",
+    "confidence": 0.88
+  },
+  {
+    "text": "Machine learning is actually a subset of AI that focuses on algorithms that can learn from data.",
+    "start": 35.3,
+    "end": 41.6,
+    "speaker": "Speaker_1",
+    "confidence": 0.96
+  },
+  {
+    "text": "Instead of being explicitly programmed for every task, these systems improve their performance through experience.",
+    "start": 42.1,
+    "end": 48.9,
+    "speaker": "Speaker_1",
+    "confidence": 0.94
+  },
+  {
+    "text": "That's fascinating. Can you give us some real-world examples?",
+    "start": 49.6,
+    "end": 53.2,
+    "speaker": "Speaker_2",
+    "confidence": 0.85
+  },
+  {
+    "text": "Absolutely. Think about recommendation systems on Netflix or Amazon.",
+    "start": 54.1,
+    "end": 58.4,
+    "speaker": "Speaker_1",
+    "confidence": 0.97
+  },
+  {
+    "text": "These systems learn from your past behavior to suggest content you might enjoy.",
+    "start": 59.0,
+    "end": 63.8,
+    "speaker": "Speaker_1",
+    "confidence": 0.92
+  },
+  {
+    "text": "Another example would be voice assistants like Siri or Alexa.",
+    "start": 64.5,
+    "end": 68.1,
+    "speaker": "Speaker_1",
+    "confidence": 0.89
+  },
+  {
+    "text": "They use natural language processing to understand and respond to our questions.",
+    "start": 68.7,
+    "end": 73.9,
+    "speaker": "Speaker_1",
+    "confidence": 0.91
+  },
+  {
+    "text": "Wow, I use those every day without really thinking about the technology behind them.",
+    "start": 74.8,
+    "end": 79.5,
+    "speaker": "Speaker_2",
+    "confidence": 0.83
+  },
+  {
+    "text": "That's exactly the point - the best AI is often invisible to the user.",
+    "start": 80.2,
+    "end": 84.6,
+    "speaker": "Speaker_1",
+    "confidence": 0.95
+  },
+  {
+    "text": "What about the challenges? Are there any limitations we should be aware of?",
+    "start": 85.4,
+    "end": 90.1,
+    "speaker": "Speaker_2",
+    "confidence": 0.86
+  },
+  {
+    "text": "Definitely. One major challenge is data quality and bias.",
+    "start": 90.9,
+    "end": 94.7,
+    "speaker": "Speaker_1",
+    "confidence": 0.93
+  },
+  {
+    "text": "If the training data contains biases, the AI system will likely perpetuate those biases.",
+    "start": 95.3,
+    "end": 101.2,
+    "speaker": "Speaker_1",
+    "confidence": 0.88
+  },
+  {
+    "text": "Another issue is the black box problem - it's often difficult to understand how complex AI systems make their decisions.",
+    "start": 102.1,
+    "end": 109.8,
+    "speaker": "Speaker_1",
+    "confidence": 0.9
+  },
+  {
+    "text": "That makes sense. How do we address these challenges moving forward?",
+    "start": 111.2,
+    "end": 115.8,
+    "speaker": "Speaker_2",
+    "confidence": 0.84
+  },
+  {
+    "text": "Well, there are several approaches. First, we need more diverse and representative datasets.",
+    "start": 116.5,
+    "end": 122.3,
+    "speaker": "Speaker_1",
+    "confidence": 0.92
+  },
+  {
+    "text": "We're also developing explainable AI techniques to make these systems more transparent.",
+    "start": 123.1,
+    "end": 128.9,
+    "speaker": "Speaker_1",
+    "confidence": 0.89
+  },
+  {
+    "text": "What does explainable AI look like in practice?",
+    "start": 129.7,
+    "end": 132.8,
+    "speaker": "Speaker_2",
+    "confidence": 0.91
+  },
+  {
+    "text": "It involves creating models that can provide reasoning for their decisions.",
+    "start": 133.5,
+    "end": 138.2,
+    "speaker": "Speaker_1",
+    "confidence": 0.94
+  },
+  {
+    "text": "For example, if an AI system rejects a loan application, it should be able to explain why.",
+    "start": 138.9,
+    "end": 145.1,
+    "speaker": "Speaker_1",
+    "confidence": 0.87
+  },
+  {
+    "text": "That's really important for trust and accountability.",
+    "start": 145.8,
+    "end": 148.9,
+    "speaker": "Speaker_2",
+    "confidence": 0.93
+  },
+  {
+    "text": "Exactly. Now, let's talk about the future of AI and emerging trends.",
+    "start": 149.6,
+    "end": 154.3,
+    "speaker": "Speaker_1",
+    "confidence": 0.96
+  },
+  {
+    "text": "What should we be looking out for in the next few years?",
+    "start": 155.1,
+    "end": 158.4,
+    "speaker": "Speaker_2",
+    "confidence": 0.88
+  },
+  {
+    "text": "I think we'll see significant advances in multimodal AI systems.",
+    "start": 159.2,
+    "end": 163.8,
+    "speaker": "Speaker_1",
+    "confidence": 0.92
+  },
+  {
+    "text": "These can process text, images, audio, and video simultaneously.",
+    "start": 164.5,
+    "end": 169.1,
+    "speaker": "Speaker_1",
+    "confidence": 0.9
+  },
+  {
+    "text": "We're also seeing improvements in few-shot and zero-shot learning.",
+    "start": 170.0,
+    "end": 174.7,
+    "speaker": "Speaker_1",
+    "confidence": 0.85
+  },
+  {
+    "text": "Could you explain what those terms mean?",
+    "start": 175.5,
+    "end": 178.1,
+    "speaker": "Speaker_2",
+    "confidence": 0.89
+  },
+  {
+    "text": "Sure. Few-shot learning means the AI can learn new tasks with just a few examples.",
+    "start": 178.9,
+    "end": 184.6,
+    "speaker": "Speaker_1",
+    "confidence": 0.91
+  },
+  {
+    "text": "Zero-shot learning is even more impressive - the AI can perform tasks it has never seen before.",
+    "start": 185.3,
+    "end": 191.8,
+    "speaker": "Speaker_1",
+    "confidence": 0.88
+  },
+  {
+    "text": "That sounds almost like human-level adaptability.",
+    "start": 192.6,
+    "end": 195.9,
+    "speaker": "Speaker_2",
+    "confidence": 0.86
+  },
+  {
+    "text": "In some ways, yes. But we're still far from artificial general intelligence.",
+    "start": 196.7,
+    "end": 201.4,
+    "speaker": "Speaker_1",
+    "confidence": 0.94
+  },
+  {
+    "text": "Current AI systems are still quite specialized, even the most advanced ones.",
+    "start": 202.1,
+    "end": 207.3,
+    "speaker": "Speaker_1",
+    "confidence": 0.92
+  },
+  {
+    "text": "What about the ethical considerations? How do we ensure AI benefits everyone?",
+    "start": 208.2,
+    "end": 213.5,
+    "speaker": "Speaker_2",
+    "confidence": 0.83
+  },
+  {
+    "text": "That's perhaps the most important question we face today.",
+    "start": 214.3,
+    "end": 218.1,
+    "speaker": "Speaker_1",
+    "confidence": 0.95
+  }
+]
