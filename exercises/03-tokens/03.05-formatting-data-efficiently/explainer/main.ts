@@ -3,18 +3,26 @@ import { Tiktoken } from 'js-tiktoken/lite';
 import o200k_base from 'js-tiktoken/ranks/o200k_base';
 import path from 'node:path';
 
-const tokenizer = new Tiktoken(o200k_base);
+const tokenizer = new Tiktoken(
+  o200k_base,
+);
 
 const jsonData = readFileSync(
-  path.join(import.meta.dirname, 'data.json'),
+  path.join(
+    import.meta.dirname,
+    'data.json',
+  ),
   'utf-8',
 );
 
-const jsonTokens = tokenizer.encode(jsonData);
+const jsonTokens =
+  tokenizer.encode(jsonData);
 
 console.log(jsonTokens.length);
 
-const formattedData = JSON.parse(jsonData)
+const formattedData = JSON.parse(
+  jsonData,
+)
   .map(
     (item: {
       text: string;
@@ -28,9 +36,15 @@ const formattedData = JSON.parse(jsonData)
   )
   .join('\n');
 
-const headerLine = 'speaker|confidence|text|start|end';
-const formattedTokens = tokenizer.encode(
-  headerLine + '\n' + formattedData,
-);
+const headerLine =
+  'speaker|confidence|text|start|end';
+const formattedTokens =
+  tokenizer.encode(
+    headerLine +
+      '\n' +
+      formattedData,
+  );
 
-console.log(formattedTokens.length);
+console.log(
+  formattedTokens.length,
+);

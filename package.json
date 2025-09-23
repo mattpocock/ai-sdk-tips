@@ -71,7 +71,7 @@
     "semi": true,
     "trailingComma": "all",
     "singleQuote": true,
-    "printWidth": 65,
+    "printWidth": 35,
     "tabWidth": 2
   }
 }
