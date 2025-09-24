@@ -34,9 +34,9 @@ const output = streamText({
         {
           type: 'text',
           text: `
-          ## Retrieved Data
-
+          <retrieved-data>
           ${retrievedData}
+          </retrieved-data>
           `,
         },
         {
