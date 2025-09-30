@@ -7,9 +7,7 @@
   "scripts": {
     "dev": "ai-hero-cli exercise",
     "exercise": "ai-hero-cli exercise",
-    "prepare": "husky",
-    "lint": "tsx internal/lint.ts",
-    "update-cms": "ai-hero-cli internal update-cvm"
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -19,9 +17,9 @@
   },
   "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
   "dependencies": {
-    "@ai-sdk/anthropic": "^2.0.17",
-    "@ai-sdk/google": "2.0.15",
-    "@ai-sdk/react": "2.0.49",
+    "@ai-sdk/anthropic": "^2.0.20",
+    "@ai-sdk/google": "2.0.17",
+    "@ai-sdk/react": "2.0.57",
     "@clack/prompts": "^0.11.0",
     "@hono/node-server": "^1.15.0",
     "@opentelemetry/auto-instrumentations-node": "^0.62.0",
@@ -32,10 +30,9 @@
     "@tanstack/react-query": "^5.81.5",
     "@tavily/core": "^0.5.9",
     "@types/node": "^24.0.10",
-    "@types/prompts": "^2.4.9",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "ai": "5.0.49",
+    "ai": "5.0.57",
     "commander": "^14.0.0",
     "drizzle-orm": "^0.44.4",
     "evalite": "^0.11.4",
@@ -47,7 +44,6 @@
     "mem0ai": "^2.1.36",
     "okapibm25": "^1.4.1",
     "papaparse": "^5.5.3",
-    "prompts": "^2.4.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0",
@@ -62,7 +58,7 @@
   },
   "devDependencies": {
     "@types/papaparse": "^5.3.16",
-    "ai-hero-cli": "^0.0.21",
+    "ai-hero-cli": "^0.0.22",
     "husky": "^9.1.7",
     "prettier": "^3.6.2",
     "tsx": "^4.20.3"
